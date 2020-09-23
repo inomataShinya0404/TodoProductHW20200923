@@ -11,6 +11,7 @@ import UIKit
 class RegisterViewController: UIViewController {
 
     @IBOutlet var textField: UITextField!
+    var number: Int!
     
     override func viewDidLoad() {
         super.viewDidLoad()
