@@ -43,7 +43,7 @@ class RegisterViewController: UIViewController, UITextFieldDelegate {
     @IBAction func saveButton() {
 //        <------ 各UIパーツから値を取得する ------>
         let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "yyyy/MM/dd"
+        dateFormatter.dateFormat = "yyyy/MM/dd/HH:mm"
         
         //配列へのデータ追加
         titleArray.append(textField.text!)

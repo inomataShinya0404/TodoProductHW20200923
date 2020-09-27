@@ -50,6 +50,11 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         return cell
     }
     
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        self.titleArray.remove(at: indexPath.row)
+        tableView.deleteRows(at: [indexPath], with: .automatic)
+    }
+    
     override func viewWillAppear(_ animated: Bool) {
         //XibカスタムCellのLabelに持ってきた値を表示する
         super.viewWillAppear(animated)
