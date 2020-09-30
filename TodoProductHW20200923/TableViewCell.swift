@@ -10,13 +10,18 @@ import UIKit
 
 class TableViewCell: UITableViewCell {
     
-    @IBOutlet var titleLabel: UILabel!
-    @IBOutlet var dateLabel: UILabel!
+    @IBOutlet var title: UILabel!
+    @IBOutlet var date: UILabel!
 
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
     }
+    
+//    func setCell(table: Table){
+//        self.title.text = table.title as String
+//        self.date.text = table.date as String
+//    }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
@@ -24,8 +29,9 @@ class TableViewCell: UITableViewCell {
         // Configure the view for the selected state
     }
     
-//    func setCell(cell: Cell) {
-//        self.titleLabel.text = cell.titleLabel as String
-//    }
-    
+    class func initNib() -> TableViewCell {
+        //xibファイルのオブジェクトをインスタンス
+        let className: String = String(describing: TableViewCell.self)
+        return Bundle.main.loadNibNamed(className, owner: self, options: nil)?.first as! TableViewCell
+    }
 }

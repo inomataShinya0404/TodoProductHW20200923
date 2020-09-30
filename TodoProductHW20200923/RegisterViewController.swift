@@ -53,7 +53,6 @@ class RegisterViewController: UIViewController, UITextFieldDelegate {
         saveData.set(titleArray, forKey: "title")
         saveData.set(dateArray, forKey: "date")
         
-        
 //        <------ アラート ------>
         //Save完了のアラートを出してやる
         let aleart: UIAlertController = UIAlertController(title: "保存", message: "メモの保存が完了しました。", preferredStyle: .alert)
@@ -72,12 +71,6 @@ class RegisterViewController: UIViewController, UITextFieldDelegate {
         )
         present(aleart, animated: true, completion: nil)
     }
-
-    //画面遷移時に値の受け渡しをする
-//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-//        let viewController:ViewController = segue.destination as! ViewController
-//        viewController.saveData = self.saveData
-//    }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()

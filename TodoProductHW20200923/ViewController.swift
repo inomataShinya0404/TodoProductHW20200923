@@ -8,12 +8,11 @@
 
 import UIKit
 
+
 class ViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
 
     //StoryBoardで扱うTableViewを宣言
     @IBOutlet var table: UITableView!
-
-    var saveData: UserDefaults = UserDefaults.standard
     
     //RegisterViewControllerでUserDefaultsに保存されたデータを受け取る変数
     var remindTitle: String!
@@ -21,6 +20,8 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     
     var titleArray = [String]()
     var dateArray = [String]()
+
+    var saveData: UserDefaults = UserDefaults.standard
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -39,20 +40,27 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         return titleArray.count
     }
     
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 70.0
+    }
+    
     //ID付きのセルを取得して、セル付属のtextLabelにコンテンツを表示させる
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell{
+        
         let cell = tableView.dequeueReusableCell(withIdentifier: "CustomCell") as! TableViewCell
         
         //cellにコンテンツを表示する
-        cell.titleLabel.text = titleArray[indexPath.row]
-        cell.dateLabel.text = dateArray[indexPath.row]
+        cell.title.text = titleArray[indexPath.row]
+        cell.date.text = dateArray[indexPath.row]
         
         return cell
     }
     
+    //cellをスライドでdeleteできるようにする
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         self.titleArray.remove(at: indexPath.row)
         tableView.deleteRows(at: [indexPath], with: .automatic)
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -63,8 +71,8 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
             titleArray = UserDefaults.standard.object(forKey: "title") as! [String]
             dateArray = UserDefaults.standard.object(forKey: "date") as! [String]
         }
-        table.reloadData()
+        
+        self.table.reloadData()
     }
 
 }
-
